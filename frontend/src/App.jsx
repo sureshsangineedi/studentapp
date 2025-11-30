@@ -36,7 +36,8 @@ function App() {
       });
 
       if (response.ok) {
-        fetchStudents(); // Refresh list
+        const newStudent = await response.json();
+        setStudents((prevStudents) => [...prevStudents, newStudent]);
       }
     } catch (error) {
       console.error('Error adding student:', error);
