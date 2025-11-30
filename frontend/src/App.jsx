@@ -5,11 +5,13 @@ import StudentList from './components/StudentList';
 function App() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Fetch students from backend
+  
+  const api = 'https://studentapp1-bf6r.onrender.com';
+  
   const fetchStudents = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/students');
+      // Fetch students from backend
+      const response = await fetch(`${api}/api/students`);
       const data = await response.json();
       setStudents(data);
       setLoading(false);
@@ -25,7 +27,7 @@ function App() {
 
   const handleAddStudent = async (studentData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/students', {
+      const response = await fetch(`${api}/api/students`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +45,7 @@ function App() {
 
   const handleDeleteStudent = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/students/${id}`, {
+      const response = await fetch(`${api}/api/students/${id}`, {
         method: 'DELETE',
       });
 
